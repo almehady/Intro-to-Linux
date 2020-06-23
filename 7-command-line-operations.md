@@ -33,7 +33,7 @@ and restart it (after logging into the console) with:
 On Ubuntu versions before 18.04 LTS, substitute `lightdm` for `gdm`.
 
 ## Basic Operations
-![basic operations](basic_operations.jpg)
+![basic operations](images/basic_operations.jpg)
 
 ## Logging In and Out
 
@@ -59,22 +59,22 @@ as well as locating source and man files packaged with the program.
 
 ## Accessing Directories
 
-![accessing directories](accessing_dir.png)
+![accessing directories](images/accessing_dir.png)
 
 ## Absolute and Relative Paths
 
-![absulate and relative path](path.jpg)
+![absulate and relative path](images/path.jpg)
 
 ## Exploring the Filesystem
 Traversing up and down the filesystem tree can get tedious. The tree command is a good way to get a bird’s-eye view of the filesystem tree. Use tree -d to view just the directories and to suppress listing file names.
 
-![exploring file system](explore_file_system.png)
+![exploring file system](images/explore_file_system.png)
 
 ## Navigating the Directory History
 The cd command remembers where you were last, and lets you get back there with cd -. For remembering more than just the last directory visited, use pushd to change the directory instead of cd; this pushes your starting directory onto a list. Using popd will then send you back to those directories, walking in reverse order (the most recent directory will be the first one retrieved with popd). The list of directories is displayed with the dirs command.
 
 ## Viewing Files
-![exploring file system](view_file.png)
+![exploring file system](images/view_file.png)
 
 ## touch
 touch is often used to set or update the access, change, and modify times of files. By default, it resets a file's timestamp to match the current time.
@@ -103,13 +103,13 @@ mkdir is used to create a directory:
 Removing a directory is done with rmdir. The directory must be empty or the command will fail. To remove a directory and all of its contents you have to do rm -rf.
 
 ## Moving, Renaming or Removing a File
-![rename and remove the file](rename_remove_file.png)
+![rename and remove the file](images/rename_remove_file.png)
 
 ## Renaming or Removing a Directory
 rmdir works only on empty directories; otherwise you get an error. 
 
 While typing rm –rf is a fast and easy way to remove a whole filesystem tree recursively, it is extremely dangerous and should be used with the utmost care, especially when used by root (recall that recursive means drilling down through all sub-directories, all the way down a tree).
-![rename and remove the dir](rename_remove_dir.png)
+![rename and remove the dir](images/rename_remove_dir.png)
 
 ## Pipes
 
@@ -131,7 +131,7 @@ which will list all the files and directories with both zip and bin in their nam
 
 ### Wildcards and Matching File Names
 
-![search with wildcard](wildcard.png)
+![search with wildcard](images/wildcard.png)
 To search for files using the ? wildcard, replace each unknown character with ?. For example, if you know only the first two letters are 'ba' of a three-letter filename with an extension of .out, type ls ba?.out .
 
 To search for files using the * wildcard, replace the unknown string with *. For example, if you remember only that the extension was .out, type ls *.out.
@@ -142,7 +142,7 @@ ind is an extremely useful and often-used utility program in the daily life of a
 For example, administrators sometimes scan for potentially large core files (which contain diagnostic information after a program fails) that are more than several weeks old in order to remove them.
 
 It is also common to remove files in inessential or outdated files in /tmp (and other volatile directories, such as those containing cached files) that have not been accessed recently. Many Linux distributions use shell scripts that run periodically (through cron usually) to perform such house cleaning.
-![find command](findubuntu.png)
+![find command](images/findubuntu.png)
 
 #### Using find
 When no arguments are given, find lists all files in the current directory and all of its subdirectories. Commonly used options to shorten the list include -name (only list files with a certain pattern in their name), -iname (also ignore the case of file names), and -type (which will restrict the results to files of a certain specified type, such as d for directory, l for symbolic link, or f for a regular file, etc.). 
@@ -172,7 +172,7 @@ The {} (squiggly brackets) is a placeholder that will be filled with all the fil
 Please note that you have to end the command with either ‘;’ (including the single-quotes) or "\;". Both forms are fine.
 
 One can also use the -ok option, which behaves the same as -exec, except that find will prompt you for permission before executing the command. This makes it a good way to test your results before blindly executing any potentially dangerous commands.
-![advance find command](advance_find.jpg)
+![advance find command](images/advance_find.jpg)
 
 #### Finding Files Based on Time and Size
 t is sometimes the case that you wish to find files according to attributes, such as when they were created, last used, etc., or based on their size. It is easy to perform such searches.
@@ -200,12 +200,12 @@ There are two broad families of package managers: those based on Debian and thos
 
 ### Package Managers: Two Levels
 Both package management systems operate on two distinct levels: a low-level tool (such as dpkg or rpm) takes care of the details of unpacking individual packages, running scripts, getting the software installed correctly, while a high-level tool (such as apt, yum, dnf or zypper) works with groups of packages, downloads packages from the vendor, and figures out dependencies.
-![two levels package managers](Package_Managers.png)
-
+![two levels package managers](images/Package_Managers.png)
+Package_Managers
 ### Working With Different Package Management Systems
 The Advanced Packaging Tool (apt) is the underlying package management system that manages software on Debian-based systems. While it forms the backend for graphical package managers, such as the Ubuntu Software Center and synaptic, its native user interface is at the command line, with programs that include apt (or apt-get) and apt-cache.
 
 yum is an open source command-line package-management utility for the RPM-compatible Linux systems that belongs to the Red Hat family. yum has both command line and graphical user interfaces. Fedora and RHEL 8 have replaced yum with dnf, which has less historical baggage, has nice new capabilities and is mostly backwards-compatible with yum for day-to-day commands.
 
 zypper is the package management system for the SUSE/openSUSE family and is also based on RPM. zypper also allows you to manage repositories from the command line. zypper is fairly straightforward to use and resembles yum quite closely.
-![basic package commands](basic_package_command.png)
+![basic package commands](images/basic_package_command.png)

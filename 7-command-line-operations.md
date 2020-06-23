@@ -59,8 +59,153 @@ as well as locating source and man files packaged with the program.
 
 ## Accessing Directories
 
-| Command        | Result           | 
-| pwd      | Displays the present working directory| 
-| cd ~ or cd      | Change to your home directory (shortcut name is ~ (tilde))      | 
-| cd .. | Change to parent directory (..)     | 
-| cd - | Change to previous directory (- (minus))     | 
+![accessing directories](accessing_dir.png)
+
+## Absolute and Relative Paths
+
+![absulate and relative path](path.jpg)
+
+## Exploring the Filesystem
+Traversing up and down the filesystem tree can get tedious. The tree command is a good way to get a bird’s-eye view of the filesystem tree. Use tree -d to view just the directories and to suppress listing file names.
+
+![exploring file system](explore_file_system.png)
+
+## Navigating the Directory History
+The cd command remembers where you were last, and lets you get back there with cd -. For remembering more than just the last directory visited, use pushd to change the directory instead of cd; this pushes your starting directory onto a list. Using popd will then send you back to those directories, walking in reverse order (the most recent directory will be the first one retrieved with popd). The list of directories is displayed with the dirs command.
+
+## Viewing Files
+![exploring file system](view_file.png)
+
+## touch
+touch is often used to set or update the access, change, and modify times of files. By default, it resets a file's timestamp to match the current time.
+
+However, you can also create an empty file using touch:
+
+`$ touch <filename>`
+
+This is normally done to create an empty file as a placeholder for a later purpose.
+
+touch provides several useful options. For example, the -t option allows you to set the date and timestamp of the file to a specific value, as in:
+
+`$ touch -t 12091600 myfile`
+
+This sets the myfile file's timestamp to 4 p.m., December 9th (12 09 1600).
+
+## mkdir and rmdir
+
+mkdir is used to create a directory:
+
+            * mkdir sampdir 
+            It creates a sample directory named sampdir under the current directory. 
+            * mkdir /usr/sampdir 
+            It creates a sample directory called sampdir under /usr.
+
+Removing a directory is done with rmdir. The directory must be empty or the command will fail. To remove a directory and all of its contents you have to do rm -rf.
+
+## Moving, Renaming or Removing a File
+![rename and remove the file](rename_remove_file.png)
+
+## Renaming or Removing a Directory
+rmdir works only on empty directories; otherwise you get an error. 
+
+While typing rm –rf is a fast and easy way to remove a whole filesystem tree recursively, it is extremely dangerous and should be used with the utmost care, especially when used by root (recall that recursive means drilling down through all sub-directories, all the way down a tree).
+![rename and remove the dir](rename_remove_dir.png)
+
+## Pipes
+
+The UNIX/Linux philosophy is to have many simple and short programs (or commands) cooperate together to produce quite complex results, rather than have one complex program with many possible options and modes of operation. In order to accomplish this, extensive use of pipes is made. You can pipe the output of one command or program into another as its input.
+
+In order to do this, we use the vertical-bar, |, (pipe symbol) between commands as in:
+ `$ command1 | command2 | command3`
+The above represents what we often call a pipeline, and allows Linux to combine the actions of several commands into one. This is extraordinarily efficient because command2 and command3 do not have to wait for the previous pipeline commands to complete before they can begin hacking at the data in their input streams; on multiple CPU or core systems, the available computing power is much better utilized and things get done quicker.
+
+## Searching for Files
+The main tools for doing this are the locate and find utilities. We will also show how to use wildcards in bash, in order to specify any file which matches a given generalized request.
+
+### locate
+The locate utility program performs a search taking advantage of a previously constructed database of files and directories on your system, matching all entries that contain a specified character string. This can sometimes result in a very long list.
+
+To get a shorter (and possibly more relevant) list, we can use the grep program as a filter. grep will print only the lines that contain one or more specified strings, as in: 
+ `$ locate zip | grep bin`
+which will list all the files and directories with both zip and bin in their name. We will cover grep in much more detail later. Notice the use of | to pipe the two commands together.
+
+### Wildcards and Matching File Names
+
+![search with wildcard](wildcard.png)
+To search for files using the ? wildcard, replace each unknown character with ?. For example, if you know only the first two letters are 'ba' of a three-letter filename with an extension of .out, type ls ba?.out .
+
+To search for files using the * wildcard, replace the unknown string with *. For example, if you remember only that the extension was .out, type ls *.out.
+
+### The find Program
+ind is an extremely useful and often-used utility program in the daily life of a Linux system administrator. It recurses down the filesystem tree from any particular directory (or set of directories) and locates files that match specified conditions. The default pathname is always the present working directory.
+
+For example, administrators sometimes scan for potentially large core files (which contain diagnostic information after a program fails) that are more than several weeks old in order to remove them.
+
+It is also common to remove files in inessential or outdated files in /tmp (and other volatile directories, such as those containing cached files) that have not been accessed recently. Many Linux distributions use shell scripts that run periodically (through cron usually) to perform such house cleaning.
+![find command](findubuntu.png)
+
+#### Using find
+When no arguments are given, find lists all files in the current directory and all of its subdirectories. Commonly used options to shorten the list include -name (only list files with a certain pattern in their name), -iname (also ignore the case of file names), and -type (which will restrict the results to files of a certain specified type, such as d for directory, l for symbolic link, or f for a regular file, etc.). 
+
+Searching for files and directories named gcc:
+
+`$ find /usr -name gcc`
+
+Searching only for directories named gcc:
+
+`$ find /usr -type d -name gcc`
+
+Searching only for regular files named gcc:
+
+`$ find /usr -type f -name gcc`
+
+#### Using Advanced find Options
+
+Another good use of find is being able to run commands on the files that match your search criteria. The -exec option is used for this purpose.
+
+To find and remove all files that end with .swp: 
+
+$ find -name "*.swp" -exec rm {} ’;’
+
+The {} (squiggly brackets) is a placeholder that will be filled with all the file names that result from the find expression, and the preceding command will be run on each one individually.
+
+Please note that you have to end the command with either ‘;’ (including the single-quotes) or "\;". Both forms are fine.
+
+One can also use the -ok option, which behaves the same as -exec, except that find will prompt you for permission before executing the command. This makes it a good way to test your results before blindly executing any potentially dangerous commands.
+![advance find command](advance_find.jpg)
+
+#### Finding Files Based on Time and Size
+t is sometimes the case that you wish to find files according to attributes, such as when they were created, last used, etc., or based on their size. It is easy to perform such searches.
+
+To find files based on time:
+
+`$ find / -ctime 3`
+
+Here, -ctime is when the inode metadata (i.e. file ownership, permissions, etc.) last changed; it is often, but not necessarily, when the file was first created. You can also search for accessed/last read (-atime) or modified/last written (-mtime) times. The number is the number of days and can be expressed as either a number (n) that means exactly that value, +n, which means greater than that number, or -n, which means less than that number. There are similar options for times in minutes (as in -cmin, -amin, and -mmin).
+
+To find files based on sizes:
+
+`$ find / -size 0`
+
+Note the size here is in 512-byte blocks, by default; you can also specify bytes (c), kilobytes (k), megabytes (M), gigabytes (G), etc. As with the time numbers above, file sizes can also be exact numbers (n), +n or -n. For details, consult the man page for find.
+
+For example, to find files greater than 10 MB in size and running a command on those files:
+
+`$ find / -size +10M -exec command {} ’;’`
+
+## Package Management Systems on Linux
+The core parts of a Linux distribution and most of its add-on software are installed via the Package Management System. Each package contains the files and other instructions needed to make one software component work well and cooperate with the other components that comprise the entire system. Packages can depend on each other. For example, a package for a web-based application written in PHP can depend on the PHP package.
+
+There are two broad families of package managers: those based on Debian and those which use RPM as their low-level package manager. The two systems are incompatible, but broadly speaking, provide the same features and satisfy the same needs. There are some other systems used by more specialized Linux distributions.
+
+### Package Managers: Two Levels
+Both package management systems operate on two distinct levels: a low-level tool (such as dpkg or rpm) takes care of the details of unpacking individual packages, running scripts, getting the software installed correctly, while a high-level tool (such as apt, yum, dnf or zypper) works with groups of packages, downloads packages from the vendor, and figures out dependencies.
+![two levels package managers](Package_Managers.png)
+
+### Working With Different Package Management Systems
+The Advanced Packaging Tool (apt) is the underlying package management system that manages software on Debian-based systems. While it forms the backend for graphical package managers, such as the Ubuntu Software Center and synaptic, its native user interface is at the command line, with programs that include apt (or apt-get) and apt-cache.
+
+yum is an open source command-line package-management utility for the RPM-compatible Linux systems that belongs to the Red Hat family. yum has both command line and graphical user interfaces. Fedora and RHEL 8 have replaced yum with dnf, which has less historical baggage, has nice new capabilities and is mostly backwards-compatible with yum for day-to-day commands.
+
+zypper is the package management system for the SUSE/openSUSE family and is also based on RPM. zypper also allows you to manage repositories from the command line. zypper is fairly straightforward to use and resembles yum quite closely.
+![basic package commands](basic_package_command.png)

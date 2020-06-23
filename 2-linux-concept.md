@@ -8,14 +8,23 @@ Today, Linux powers more than half of the servers on the Internet, the majority 
 
 ## Lunux Terminology
 **Kernel** : Glue between hardware and applications. For example - Lunux Kernel
+
 **Distribution or Distro** - Collection of software making up a Linux based OS. For example - Feroda, CentOS, Ubuntu
+
 **Boot Loader** : Program that boots the operating system. For example - GRUB or ISOLINUX
+
 **Service** : Program that runs as a background process. Example- httpd, nfsd, ftpd and named
+
 **File System** : Method for sorting and organizing files. Example - ext3, ext4, FAT, XFS, NTFS and Btrfs
+
 **X Window System** : Graphical subsystem on nearly all Linux systems
+
 **Desktop Environment** : Graphical user interface on top of the operating system. Example - GNOME, KDE, Xfce and Fluxbox
+
 **Command line** : Interface for typing commands on top of the operating system.
+
 **Shell**: Command line interpreter that interprets the command line input and instructs the operating system to perform any necessary task and commands. Example - bash, tcsh and zsh
+
 
 ## Linux Distributions
 The Linux kernel is the core of the operating system. A full Linux distribution consists of the kernel plus a number of other software tools for file-related operations, user management, and software package management. Each of these tools provides a part of the complete system. Each tool is often its own separate project, with its own developers working to perfect that piece of the system.

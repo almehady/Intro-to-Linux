@@ -26,6 +26,7 @@ Today, Linux powers more than half of the servers on the Internet, the majority 
 **Shell**: Command line interpreter that interprets the command line input and instructs the operating system to perform any necessary task and commands. Example - bash, tcsh and zsh
 
 
+
 ## Linux Distributions
 The Linux kernel is the core of the operating system. A full Linux distribution consists of the kernel plus a number of other software tools for file-related operations, user management, and software package management. Each of these tools provides a part of the complete system. Each tool is often its own separate project, with its own developers working to perfect that piece of the system.
 

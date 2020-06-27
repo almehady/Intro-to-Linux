@@ -1,4 +1,13 @@
-# Command Line Operations
+#  Chapter 7: Command Line Operations 
+## Learning Objectives
+By the end of this chapter, you should be able to:
+
+            * Use the command line to perform operations in Linux.
+            * Search for files.
+            * Create and manage files.
+            * Install and update software.
+
+
 
 ## Introduction to the Command Line
 

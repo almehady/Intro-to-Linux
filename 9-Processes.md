@@ -1,4 +1,18 @@
-# What Is a Process?
+# Chapter 9: Processes
+
+## Learning Objectives
+
+By the end of this chapter, you should be able to:
+            * Describe what a process is and distinguish between types of processes.
+            * Enumerate process attributes.
+            * Manage processes using ps and top.
+            * Understand the use of load averages and other process metrics.
+            * Manipulate processes by putting them in background and restoring them to foreground.
+            * Use at, cron, and sleep to schedule processes in the future or pause them.
+
+
+
+##  What Is a Process?
 
 A process is simply an instance of one or more related tasks (threads) executing on your computer. It is not the same as a program or a command. A single command may actually start several processes simultaneously. Some processes are independent of each other and others are related. A failure of one process may or may not affect the others running on the system.
 

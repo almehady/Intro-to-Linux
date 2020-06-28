@@ -110,3 +110,128 @@ You can also mount the remote filesystem without a reboot or as a one-time mount
 Remember, if /etc/fstab is not modified, this remote mount will not be present the next time the system is restarted. Furthermore, you may want to use the nofail option in fstab in case the NFS server is not live at boot.
 
 ![NFS on the Client](images/nfsclientubuntu.png)
+
+## Filesystem Architecture
+
+### Overview of User Home Directories
+In this section, you will learn to identify and differentiate between the most important directories found in Linux. We start with ordinary users' home directory space.
+
+Each user has a home directory, usually placed under /home. The /root ("slash-root") directory on modern Linux systems is no more than the home directory of the root user (or superuser, or system administrator account).
+
+On multi-user systems, the /home directory infrastructure is often mounted as a separate filesystem on its own partition, or even exported (shared) remotely on a network through NFS.
+
+Sometimes, you may group useIn this section, you will learn to identify and differentiate between the most important directories found in Linux. We start with ordinary users' home directory space.
+
+Each user has a home directory, usually placed under /home. The /root ("slash-root") directory on modern Linux systems is no more than the home directory of the root user (or superuser, or system administrator account).
+
+On multi-user systems, the /home directory infrastructure is often mounted as a separate filesystem on its own partition, or even exported (shared) remotely on a network through NFS.
+
+Sometimes, you may group users based on their department or function. You can then create subdirectories under the /home directory for each of these groups. For example, a school may organize /home with something like the following:
+
+/home/faculty/
+/home/staff/
+/home/students/rs 
+based on their department or function. You can then create subdirectories under the /home directory for each of these groups. For example, a school may organize /home with something like the following:
+
+/home/faculty/
+/home/staff/
+/home/students/
+
+![Home Directories](images/Home_directories.png)
+
+### The /bin and /sbin Directories
+The /bin directory contains executable binaries, essential commands used to boot the system or in single-user mode, and essential commands required by all system users, such as cat, cp, ls, mv, ps, and rm.
+
+Likewise, the /sbin directory is intended for essential binaries related to system administration, such as fsck and ip. To view a list of these programs, type: 
+
+$ ls /bin /sbin
+
+some of the newest Linux distributions /usr/bin and /bin are actually just symbolically linked together, as are /usr/sbin and /sbin.
+
+### The /proc Filesystem
+
+Certain filesystems, like the one mounted at /proc, are called pseudo-filesystems because they have no permanent presence anywhere on the disk.
+
+The /proc filesystem contains virtual files (files that exist only in memory) that permit viewing constantly changing kernel data. /proc contains files and directories that mimic kernel structures and configuration information. It does not contain real files, but runtime system information, e.g. system memory, devices mounted, hardware configuration, etc. Some important entries in /proc are:
+
+/proc/cpuinfo
+/proc/interrupts
+/proc/meminfo
+/proc/mounts
+/proc/partitions
+/proc/version
+
+/proc has subdirectories as well, including:
+
+/proc/<Process-ID-#>
+/proc/sys
+
+### The /dev Directory
+The /dev directory contains device nodes, a type of pseudo-file used by most hardware and software devices, except for network devices. This directory is:
+
+            * Empty on the disk partition when it is not mounted
+
+            * Contains entries which are created by the udev system, which creates and manages device nodes on Linux, creating them dynamically when devices are found. The /dev directory contains items such as:
+
+                   1. /dev/sda1 (first partition on the first hard disk)
+                   2. /dev/lp1 (second printer)
+                   3. /dev/random (a source of random numbers).
+
+### The /var Directory
+
+The /var directory contains files that are expected to change in size and content as the system is running (var stands for variable), such as the entries in the following directories:
+
+            * System log files: /var/log
+            * Packages and database files: /var/lib
+            * Print queues: /var/spool
+            * Temporary files: /var/tmp.
+
+The /var directory may be put on its own filesystem so that growth of the files can be accommodated and any exploding  file sizes do not fatally affect the system. Network services directories such as /var/ftp (the FTP service) and /var/www (the HTTP web service) are also found under /var.
+
+### The /etc Directory
+The /etc directory is the home for system configuration files. It contains no binary programs, although there are some executable scripts. For example, /etc/resolv.conf tells the system where to go on the network to obtain host name to IP address mappings (DNS). Files like passwd, shadow and group for managing user accounts are found in the /etc directory. While some distributions have historically had their own extensive infrastructure under /etc (for example, Red Hat and SUSE have used /etc/sysconfig), with the advent of systemd there is much more uniformity among distributions today.
+
+Note that /etc is for system-wide configuration files and only the superuser can modify files there. User-specific configuration files are always found under their home directory.
+
+### The /boot Directory
+The /boot directory contains the few essential files needed to boot the system. For every alternative kernel installed on the system there are four files:
+
+            1. vmlinuz
+            The compressed Linux kernel, required for booting.
+            2. initramfs
+            The initial ram filesystem, required for booting, sometimes called initrd, not initramfs.
+            3. config
+            The kernel configuration file, only used for debugging and bookkeeping.
+            4. System.map
+            Kernel symbol table, only used for debugging.
+
+Each of these files has a kernel version appended to its name.
+
+The Grand Unified Bootloader (GRUB) files such as /boot/grub/grub.conf or /boot/grub2/grub2.cfg are also found under the /boot directory.
+
+### The /lib and /lib64 Directories
+/lib contains libraries (common code shared by applications and needed for them to run) for the essential programs in /bin and /sbin. These library filenames either start with ld or lib. For example, /lib/libncurses.so.5.9.
+
+Most of these are what is known as dynamically loaded libraries (also known as shared libraries or Shared Objects (SO)). On some Linux distributions there exists a /lib64 directory containing 64-bit libraries, while /lib contains 32-bit versions.
+
+### Removable media: the /media, /run and /mnt Directories
+One often uses removable media, such as USB drives, CDs and DVDs. To make the material accessible through the regular filesystem, it has to be mounted at a convenient location. Most Linux systems are configured so any removable media are automatically mounted when the system notices something has been plugged in.
+
+While historically this was done under the /media directory, modern Linux distributions place these mount points under the /run directory. For example, a USB pen drive with a label myusbdrive for a user name student would be mounted at /run/media/student/myusbdrive.
+
+### Additional Directories Under /:
+There are some additional directories to be found under the root directory:
+
+![additional directories](images/additional_dirs.png)
+
+### The /usr Directory Tree
+The /usr directory tree contains theoretically non-essential programs and scripts (in the sense that they should not be needed to initially boot the system) and has at least the following sub-directories:
+![user directories](images/user_dirs.png)
+
+### Comparing Files with diff
+
+Now that you know about the filesystem and its structure, let’s learn how to manage files and directories.
+
+diff is used to compare files and directories. This often-used utility program has many useful options (see: man diff) including:
+
+![Comparing Files with diff](images/diff.png)

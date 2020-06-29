@@ -235,3 +235,8 @@ Now that you know about the filesystem and its structure, let’s learn how to m
 diff is used to compare files and directories. This often-used utility program has many useful options (see: man diff) including:
 
 ![Comparing Files with diff](images/diff.png)
+
+### Using diff3 and patch
+ou can compare three files at once using diff3, which uses one file as the reference basis for the other two. For example, suppose you and a co-worker both have made modifications to the same file working at the same time independently. diff3 can show the differences based on the common file you both started with. The syntax for diff3 is as follows:
+
+`$ diff3 MY-FILE COMMON-FILE YOUR-FILE`

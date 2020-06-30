@@ -72,3 +72,201 @@ nano provides a two line shortcut bar at the bottom of the screen that lists the
             CTRL-R - Insert contents from another file to the current buffer.
             CTRL-C - Cancels previous commands.
             
+### gedit
+gedit (pronounced 'g-edit') is a simple-to-use graphical editor that can only be run within a Graphical Desktop environment. It is visually quite similar to the Notepad text editor in Windows, but is actually far more capable and very configurable and has a wealth of plugins available to extend its capabilities further.
+
+To open a new file find the program in your desktop's menu system, or from the command line type gedit <filename>. If the file does not exist, it will be created.
+
+Using gedit is pretty straightforward and does not require much training. Its interface is composed of quite familiar elements.
+
+## vi and emacs
+Developers and administrators experienced in working on UNIX-like systems almost always use one of the two venerable editing options: vi and emacs. Both are present or easily available on all distributions and are completely compatible with the versions available on other operating systems. 
+
+Both vi and emacs have a basic purely text-based form that can run in a non-graphical environment. They also have one or more graphical interface forms with extended capabilities; these may be friendlier for a less experienced user. While vi and emacs can have significantly steep learning curves for new users, they are extremely efficient when one has learned how to use them.
+
+### Introduction to vi
+Usually, the actual program installed on your system is vim, which stands for Vi IMproved, and is aliased to the name vi. The name is pronounced as “vee-eye”.
+
+Even if you do not want to use vi, it is good to gain some familiarity with it: it is a standard tool installed on virtually all Linux distributions. Indeed, there may be times where there is no other editor available on the system.
+
+GNOME extends vi with a very graphical interface known as gvim and KDE offers kvim. Either of these may be easier to use at first. 
+
+When using vi, all commands are entered through the keyboard. You do not need to keep moving your hands to use a pointer device such as a mouse or touchpad, unless you want to do so when using one of the graphical versions of the editor.
+
+### vimtutor
+Typing vimtutor launches a short but very comprehensive tutorial for those who want to learn their first vi commands. Even though it provides only an introduction and just seven lessons, it has enough material to make you a very proficient vi user, because it covers a large number of commands. After learning these basic ones, you can look up new tricks to incorporate into your list of vi commands because there are always more optimal ways to do things in vi with less typing.
+
+### Modes in vi
+vi provides three modes, as described in the table below. It is vital to not lose track of which mode you are in. Many keystrokes and commands behave quite differently in different modes.
+
+ 
+**Mode** 	**Feature**
+Command 	
+
+    By default, vi starts in Command mode.
+    Each key is an editor command.
+    Keyboard strokes are interpreted as commands that can modify file contents.
+
+Insert 	
+
+    Type i to switch to Insert mode from Command mode.
+    Insert mode is used to enter (insert) text into a file.
+    Insert mode is indicated by an “? INSERT ?” indicator at the bottom of the screen.
+    Press Esc to exit Insert mode and return to Command mode.
+
+Line 	
+
+    Type : to switch to the Line mode from Command mode. Each key is an external command, including operations such as writing the file contents to disk or exiting.
+    Uses line editing commands inherited from older line editors. Most of these commands are actually no longer used. Some line editing commands are very powerful.
+    Press Esc to exit Line mode and return to Command mode.
+
+### Working with Files in vi
+
+The table describes the most important commands used to start, exit, read, and write files in vi. The ENTER key needs to be pressed after all of these commands.
+
+ 
+
+**Command** 	**Usage**
+vi myfile 	    Start the editor and edit myfile
+vi -r myfile 	Start and edit myfile in recovery mode from a system crash
+:r file2 	    Read in file2 and insert at current position
+:w 	            Write to the file
+:w myfile 	    Write out to myfile
+:w! file2 	    Overwrite file2
+:x or :wq 	    Exit and write out modified file
+:q 	            Quit 
+:q! 	        Quit even though modifications have not been saved
+
+### Changing Cursor Positions in vi
+The table describes the most important keystrokes used when changing cursor position in vi. Line mode commands (those following colon : ) require the ENTER key to be pressed after the command is typed.
+
+ 
+**Key**	                **Usage**
+arrow keys 	            To move up, down, left and right
+j or <ret> 	            To move one line down
+k 	                    To move one line up
+h or Backspace 	        To move one character left
+l or Space 	            To move one character right
+0 	                    To move to beginning of line
+$ 	                    To move to end of line
+w 	                    To move to beginning of next word
+:0 or 1G 	            To move to beginning of file
+:n or nG 	            To move to line n
+:$ or G 	            To move to last line in file
+CTRL-F or Page Down 	To move forward one page
+CTRL-B or Page Up 	    To move backward one page
+^l 	                    To refresh and center screen
+
+### Searching for Text in vi
+The table describes the most important commands used when searching for text in vi. The ENTER key should be pressed after typing the search pattern.
+
+ 
+**Command** 	**Usage**
+/pattern 	    Search forward for pattern
+?pattern 	    Search backward for pattern
+
+ 
+
+The table describes the most important keystrokes used when searching for text in vi.
+
+ 
+**Key** 	**Usage**
+n 	        Move to next occurrence of search pattern
+N 	        Move to previous occurrence of search pattern
+
+### Working with Text in vi
+The table describes the most important keystrokes used when changing, adding, and deleting text in vi.
+
+You can also download a consolidated PDF file with commands for vi.
+
+ 
+**Key** 	**Usage**
+a 	        Append text after cursor; stop upon Escape key
+A 	        Append text at end of current line; stop upon Escape key
+i 	        Insert text before cursor; stop upon Escape key
+I 	        Insert text at beginning of current line; stop upon Escape key
+o 	        Start a new line below current line, insert text there; stop upon Escape key
+O 	        Start a new line above current line, insert text there; stop upon Escape key
+r 	        Replace character at current position
+R 	        Replace text starting with current position; stop upon Escape key
+x 	        Delete character at current position
+Nx 	        Delete N characters, starting at current position
+dw 	        Delete the word at the current position
+D 	        Delete the rest of the current line
+dd 	        Delete the current line
+Ndd or dNd 	Delete N lines
+u 	        Undo the previous operation
+yy 	        Yank (copy) the current line and put it in buffer
+Nyy or yNy 	Yank (copy) N lines and put it in buffer
+p 	        Paste at the current position the yanked line or lines from the buffer.
+
+### Using External Commands in vi
+Typing sh command opens an external command shell. When you exit the shell, you will resume your editing session.
+
+Typing ! executes a command from within vi. The command follows the exclamation point. This technique is best suited for non-interactive commands, such as : ! wc %. Typing this will run the wc (word count) command on the file; the character % represents the file currently being edited.
+
+## Introduction to emacs
+The emacs editor is a popular competitor for vi. Unlike vi, it does not work with modes. emacs is highly customizable and includes a large number of features. It was initially designed for use on a console, but was soon adapted to work with a GUI as well. emacs has many other capabilities other than simple text editing. For example, it can be used for email, debugging, etc.
+
+Rather than having different modes for command and insert, like vi, emacs uses the CTRL and Meta (Alt or Esc) keys for special commands.
+
+### Working with emacs
+The table lists some of the most important key combinations that are used when starting, exiting, reading, and writing files in emacs.
+
+ 
+**Key** 	    **Usage**
+emacs myfile 	Start emacs and edit myfile
+CTRL-x i 	    Insert prompted for file at current position
+CTRL-x s 	    Save all files
+CTRL-x CTRL-w
+	            Write to the file giving a new name when prompted
+CTRL-x CTRL-s 	Saves the current file 
+CTRL-x CTRL-c 	Exit after being prompted to save any modified files
+
+ 
+
+The emacs tutorial is a good place to start learning basic commands. It is available any time when in emacs by simply typing CTRL-h (for help) and then the letter t for tutorial.
+
+### Changing Cursor Positions in emacs 
+The table lists some of the keys and key combinations that are used for changing cursor positions in emacs.
+
+ 
+**Key** 	**Usage**
+Arrow keys 	Use the arrow keys for up, down, left and right
+CTRL-n 	    One line down
+CTRL-p 	    One line up
+CTRL-f 	    One character forward/right
+CTRL-b 	    One character back/left
+CTRL-a 	    Move to beginning of line
+CTRL-e 	    Move to end of line
+Meta-f 	    Move to beginning of next word
+Meta-b 	    Move back to beginning of preceding word
+Meta-< 	    Move to beginning of file
+Meta-g-g-n 	Move to line n (can also use 'Esc-x Goto-line n')
+Meta-> 	    Move to end of file
+CTRL-v or Page Down 	Move forward one page
+Meta-v or Page Up 	Move backward one page
+CTRL-l 	    Refresh and center screen
+
+### Searching for Text in emacs 
+The table lists the key combinations that are used for searching for text in emacs.
+
+ 
+**Key** 	**Usage**
+CTRL-s 	    Search forward for prompted pattern, or for next pattern
+CTRL-r 	    Search backwards for prompted pattern, or for next pattern
+
+### Working with Text in emacs 
+The table lists some of the key combinations used for changing, adding, and deleting text in emacs:
+
+ 
+**Key** 	**Usage**
+CTRL-o 	    Insert a blank line
+CTRL-d 	    Delete character at current position
+CTRL-k 	    Delete the rest of the current line
+CTRL-_ 	    Undo the previous operation
+CTRL- (space or CTRL-@) 	Mark the beginning of the selected region. The end will be at the cursor position
+CTRL-w 	    Delete the current marked text and write it to the buffer
+CTRL-y 	    Insert at current cursor location whatever was most recently deleted
+
+[emacs command](.files/emacs.pdf)

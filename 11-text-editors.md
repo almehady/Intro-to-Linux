@@ -269,4 +269,4 @@ CTRL- (space or CTRL-@) 	Mark the beginning of the selected region. The end will
 CTRL-w 	    Delete the current marked text and write it to the buffer
 CTRL-y 	    Insert at current cursor location whatever was most recently deleted
 
-[emacs command](.files/emacs.pdf)
+[emacs command](files/emacs.pdf)

@@ -12,4 +12,4 @@ What I've learned from this course:
 - Basic command line operations
 - Common applications of Linux
 
-Course link: 	[intro to linux course on edx](https://www.edx.org/course/introduction-to-linux)
+Course link: 	[Introduction to linux on edx](https://www.edx.org/course/introduction-to-linux)

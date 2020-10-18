@@ -11,3 +11,5 @@ What I've learned from this course:
 - System configurations and graphical interface of Linux
 - Basic command line operations
 - Common applications of Linux
+
+Course link: 	[intro to linux course on edx](https://www.edx.org/course/introduction-to-linux)

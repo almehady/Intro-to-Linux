@@ -14,23 +14,23 @@ What I've learned from this course:
 
 **Syllabus**
 
-1. The Linux Foundation
-[2. Linux Philosophy and Concepts](2-linux-concept.md)
-3. Linux Basics and System Startup
-4. Graphical Interface
-5. System Configuration from the Graphical Interface
-6. Common Applications
-[7. Command Line Operations](7-command-line-operations.md)
-[8. Finding Linux Documentation](8-linux-documentation.md)
-[9. Processes](9-Processes.md)
-[10. File Operations](10-file-operations.md)
-[11. Text Editors](11-text-editors.md)
-[12. User Environment](12-user-environment.md)
-[13. Manipulating Text](13-manipulating-text.md)
-[14. Network Operations](14-network-operations.md)
-[15. The Bash Shell and bash Scripting](15-bash-shell-and-scripting.md)
-[16. More on Bash Shell Scripting](16-more-bash-shell-scripting.md)
-17. Printing
-18. Local Security Principles
+[1. Introduction to Linux](1-introduction-linux.md)     
+[2. Linux Philosophy and Concepts](2-linux-concept.md)  
+3. Linux Basics and System Startup  
+4. Graphical Interface  
+5. System Configuration from the Graphical Interface  
+6. Common Applications  
+[7. Command Line Operations](7-command-line-operations.md)  
+[8. Finding Linux Documentation](8-linux-documentation.md)  
+[9. Processes](9-processes.md)  
+[10. File Operations](10-file-operations.md)  
+[11. Text Editors](11-text-editors.md)  
+[12. User Environment](12-user-environment.md)  
+[13. Manipulating Text](13-manipulating-text.md)  
+[14. Network Operations](14-network-operations.md)  
+[15. The Bash Shell and bash Scripting](15-bash-shell-and-scripting.md)  
+[16. More on Bash Shell Scripting](16-more-bash-shell-scripting.md)  
+17. Printing  
+18. Local Security Principles  
 
 Course link: 	[Introduction to linux on edx](https://www.edx.org/course/introduction-to-linux)

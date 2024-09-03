@@ -18,7 +18,7 @@ What I've learned from this course:
 [2. Linux Philosophy and Concepts](2-linux-concept.md)  
 [3. Linux Basics and System Startup  ](3-linux-basics-and-system-startup.md)  
 [4. Graphical Interface](4-graphical-interface.md)       
-5. System Configuration from the Graphical Interface  
+[5. System Configuration from the Graphical Interface](5-system-config-from-gui.md)    
 6. Common Applications  
 [7. Command Line Operations](7-command-line-operations.md)  
 [8. Finding Linux Documentation](8-linux-documentation.md)  
